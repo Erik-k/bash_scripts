@@ -1,0 +1,21 @@
+#!/bin/bash
+# finds the biggest files in a directory you specify
+#
+# example #1:
+# findbig ~ 15
+# would tell you the biggest 15 files under your HOME directory
+# (including all subfolders)
+#
+# example #2:
+# findbig
+# just finds the 10 biggest files in your current directory
+#
+# tested on bash 4.2.25 (ubuntu 12.04)
+# mhirsch@bu.edu  BSD License July 2013
+
+if [ $# -gt 0 ]; then fDir=$1; else fDir="."; fi
+if [ $# -gt 1 ]; then nFile=$2; else nFile=10; fi
+
+# NOT -execdir, or else you can't see the directory the big files are in!
+find $fDir -type f -exec ls --size {} \; | sort --numeric-sort --reverse | head --lines=$nFile
+

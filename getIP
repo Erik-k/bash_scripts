@@ -1,0 +1,10 @@
+#!/bin/bash
+#gets public IP address and displays in Terminal
+IPurl="http://ipecho.net/plain"
+
+if curl --max-time 5 $IPurl; then 
+# print a newline after result
+echo
+else
+echo Could not connect to $IPurl, sorry
+fi
