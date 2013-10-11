@@ -6,5 +6,5 @@ if curl --max-time 5 $IPurl; then
 # print a newline after result
 echo
 else
-echo Could not connect to $IPurl, sorry
+    echo Could not connect to $IPurl, sorry
 fi
