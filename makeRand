@@ -1,0 +1,10 @@
+#!/bin/bash
+# generate a random string from the command line
+
+# head -c means print the first n bytes. echo is for newline.
+if [ -z "$1" ]; then
+	echo "Usage: $0 (# of desired random characters)"
+	exit $?
+fi
+
+echo `tr -dc A-Za-z0-9 < /dev/urandom | head -c $1`
