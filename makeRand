@@ -1,5 +1,8 @@
 #!/bin/bash
 # generate a random string from the command line
+# ToDo: implement command line option to allow punctuation
+# using the [:print:] SET for tr
+# for example: tr -dc [:print:] < /dev/urandom | head -c $1
 
 # head -c means print the first n bytes. echo is for newline.
 if [ -z "$1" ]; then
