@@ -1,13 +1,28 @@
 #!/bin/bash
 # generate a random string from the command line
-# ToDo: implement command line option to allow punctuation
-# using the [:print:] SET for tr
-# for example: tr -dc [:print:] < /dev/urandom | head -c $1
+
+# Regex to check for integer input
+re='^[0-9]+$'
 
 # head -c means print the first n bytes. echo is for newline.
-if [ -z "$1" ]; then
-	echo "Usage: $0 (# of desired random characters)"
+if [ -n "$3" ]; then
+	echo "Error: too many input arguments"
+	echo "Usage: $0 (# of desired random alphanumeric characters)"
+	echo "Or: $0 # -a to use all printable characters, including punctuation."
+	exit $?	
+elif [ -z "$1" ]; then
+	echo "Usage: $0 (# of desired random alphanumeric characters)"
+	echo "Or: $0 # -a to use all printable characters, including punctuation."
 	exit $?
+elif ! [[ $1 =~ $re ]]; then
+	# If first argument isn't a number, then:
+	echo "Error: first input not an integer"
+	echo "Usage: $0 (# of desired random alphanumeric characters)"
+	echo "Or: $0 # -a to use all printable characters, including punctuation."
+	exit $?	
+elif [ "$2" = "-a" ]; then
+	echo `tr -dc [:print:] < /dev/urandom | head -c $1`
+	exit 0
 fi
 
 echo `tr -dc A-Za-z0-9 < /dev/urandom | head -c $1`
