@@ -13,6 +13,11 @@
 # Ideally it would scp the backup onto my other systems but that would
 # required hard coding my password in to a script. :-(
 
+SPACE_AVAIL=`df -h | head -n 2 | tail -n 1 | awk '{print $4}'
+# tar cannot estimate what the resulting archive will look like so the
+# most we could do is delete the previous backup, if it exists, if the 
+# available space is less than 250M. And I don't want this to delete
+# the previous backups.
 TIME=`date +"%Y-%b-%d"` 			 # Get timestamp
 FILENAME="home-backups-$TIME.tar.gz" # Create filename with timestamp
 SRCDIR="/home"
