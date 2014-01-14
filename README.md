@@ -1,0 +1,1 @@
+Various Linux bash scripts that I and others have made. I use these across my Xubuntu desktop and my (Angstrom) beaglebone, as well as the various Linux systems at school, so they are generally robust.
