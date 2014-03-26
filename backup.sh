@@ -3,18 +3,6 @@
 # Created on 6 September 2013
 # Erik Knechtel
 
-# Edited Jan 2014 because these backups are getting to be 200+ Megs, 
-# so I need to add some error checking to see if it should delete old
-# backups to make room for the new ones.
-
-#TODO:
-# Have it put the backups onto a USB key stuck in my router. Check 
-# available room on the stick to see if it should send me an email.
-
-# tar cannot estimate what the resulting archive will look like so the
-# most we could do is delete the previous backup, if it exists, if the 
-# available space is less than 250M. And I don't want this to delete
-# the previous backups.
 TIME=`date +"%Y-%b-%d"` 			 # Get timestamp
 FILENAME="home-backups-$TIME.tar.gz" # Create filename with timestamp
 SRCDIR="/home"
@@ -40,5 +28,12 @@ then
 	exit 1;
 fi
 
-tar -cpzf $DESDIR/$FILENAME $SRCDIR
+# Check to see if a backup for today already exists. If so, append (1).
+if [ -f $DESDIR/$FILENAME ]
+then
+	APPEND="(1)"
+	FILENAME=$FILENAME$APPEND
+else
+	tar -czf $DESDIR/$FILENAME $SRCDIR
+fi
 
