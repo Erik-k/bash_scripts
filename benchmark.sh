@@ -35,9 +35,9 @@ fi
 
 date >> results.txt
 
-echo "Creating a 100M file:" >> results.txt
+echo "Creating a 10M file:" >> results.txt
 echo >> results.txt
-(time dd if=/dev/urandom of=hugetestfile bs=100M count=1) 1>/dev/null 2>> results.txt
+(time dd if=/dev/urandom of=hugetestfile bs=10M count=1) 1>/dev/null 2>> results.txt
 echo >> results.txt
 
 echo "Gzipping and tarring that file:" >> results.txt
