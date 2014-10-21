@@ -1,8 +1,6 @@
 #!/bin/bash
 # generate a random string from the command line
 
-#TODO: add option to use /dev/random and test the randomness
-
 # Regex to check for integer input
 re='^[0-9]+$'
 
