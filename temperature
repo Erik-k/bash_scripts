@@ -7,7 +7,12 @@
 #	Check to see if this is a BBB, otherwise exit -1!
 #	Accept an input variable to just display XX with no decimals.
 
-TEMPERATURE=`cat /sys/class/hwmon/hwmon0/device/temp1_input`
-OUTPUT=`echo $TEMPERATURE | awk '{printf( "%." 3 "f\n", $1 / 1000) }' `
-
-echo $OUTPUT
+if [ -f /sys/class/hwmon/hwmon0/device/temp1_input ]
+then
+	TEMPERATURE=`cat /sys/class/hwmon/hwmon0/device/temp1_input`
+	OUTPUT=`echo $TEMPERATURE | awk '{printf( "%." 3 "f\n", $1 / 1000) }' `
+	echo $OUTPUT
+else
+	echo "This only works on the Beaglebone Black single-board computer."
+	exit 1
+fi
