@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# CPU temperature, originally inspired by Brian Heckathorne.
+# Only works on the Beaglebone Black, under debian!
+
+# ToDo: Format the temperature output so its XX.X rather than XX000.
+#	Check to see if this is a BBB, otherwise exit -1!
+
+cat /sys/class/hwmon/hwmon0/device/temp1_input
