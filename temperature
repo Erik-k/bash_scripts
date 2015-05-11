@@ -3,16 +3,22 @@
 # Display CPU temperature. Originally inspired by Brian Heckathorne.
 # Only works on the Beaglebone Black, under debian!
 
-# ToDo: Format the temperature output so its XX.X rather than XX000.
-#	Check to see if this is a BBB, otherwise exit -1!
-#	Accept an input variable to just display XX with no decimals.
-
-if [ -f /sys/class/hwmon/hwmon0/device/temp1_input ]
+if ! [ -f /sys/class/hwmon/hwmon0/device/temp1_input ]
 then
+	echo "This only works on the Beaglebone Black single-board computer."
+	exit 1
+
+elif [ "$1" = "--help" ]; then
+	echo "Usage: $ temperature [-q]"
+	echo "Default behavior is to display temperature in Celsius as XX.XXX"
+	echo "-q: truncate output number to be the integer part."
+
+elif [ "$1" = "-q" ]; then
+	TEMPERATURE=`cat /sys/class/hwmon/hwmon0/device/temp1_input`
+	echo $TEMPERATURE | cut -c-2
+
+elif [ $# -eq 0 ]; then
         TEMPERATURE=`cat /sys/class/hwmon/hwmon0/device/temp1_input`
         OUTPUT=`echo $TEMPERATURE | awk '{printf( "%." 3 "f\n", $1 / 1000) }' `
         echo $OUTPUT
-else
-        echo "This only works on the Beaglebone Black single-board computer."
-        exit 1
 fi
