@@ -2,7 +2,7 @@
 # Ping the router, modem, gateway, and google and record the results
 
 ROUTER=192.168.2.1
-MODEM=24.147.9.39	# This is also my IP address as the world sees it
+MODEM=XXX.XXX.XXX.XXX	# This is also my IP address as the world sees it
 GOOGLE=www.google.com
 
 TIME=`date +"%Y-%d-%b"`
