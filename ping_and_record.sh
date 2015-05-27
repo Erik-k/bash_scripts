@@ -1,7 +1,7 @@
 #!/bin/bash
 # Ping the router, modem, gateway, and google and record the results
 
-ROUTER=192.168.2.1
+ROUTER=192.168.XXX.XXX
 MODEM=XXX.XXX.XXX.XXX	# This is also my IP address as the world sees it
 GOOGLE=www.google.com
 
