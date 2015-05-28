@@ -1,6 +1,7 @@
 #!/bin/bash
 
 YOUREMAIL="erik.knechtel@gmail.com"
+DEVICE="beaglebone"
 
 IPADDRESS=$(getIP)
 OldIP=$(<~/.current_ip)
@@ -8,7 +9,7 @@ OldIP=$(<~/.current_ip)
 if [[ ${IPADDRESS} != ${OldIP} ]]; then
 echo "to: ${YOUREMAIL}" > email.txt
 echo "from: ${YOUREMAIL}" >> email.txt
-echo "subject: IP address change" >> email.txt
+echo "subject: ${DEVICE} IP address change" >> email.txt
 echo "" >> email.txt
 echo "Your new IP address is ${IPADDRESS} (old address was ${OldIP} )" >> email.txt
 cat email.txt | sendmail -t
