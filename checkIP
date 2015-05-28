@@ -1,6 +1,6 @@
 #!/bin/bash
 
-YOUREMAIL="erik.knechtel@gmail.com"
+YOUREMAIL="email@domain.com"
 
 IPADDRESS=$(getIP)
 OldIP=$(<~/.current_ip)
