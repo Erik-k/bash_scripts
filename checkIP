@@ -1,12 +1,16 @@
 #!/bin/bash
 
-YOUREMAIL="email@email.com"
-INTFC=eth0
+YOUREMAIL="erik.knechtel@gmail.com"
 
-IPADDRESS=$(ifconfig $INTFC | sed -n 's/.*inet addr:\([^ ]*\).*/\1/p')
+IPADDRESS=$(getIP)
 OldIP=$(<~/.current_ip)
 
 if [[ ${IPADDRESS} != ${OldIP} ]]; then
-echo "Your new IP address is ${IPADDRESS} (old address was ${OldIP} )" | mail -s "IP address change" $YOUREMAIL
+echo "to: ${YOUREMAIL}" > email.txt
+echo "from: ${YOUREMAIL}" >> email.txt
+echo "subject: IP address change" >> email.txt
+echo "" >> email.txt
+echo "Your new IP address is ${IPADDRESS} (old address was ${OldIP} )" >> email.txt
+cat email.txt | sendmail -t
 echo ${IPADDRESS} > ~/.current_ip
 fi
