@@ -13,8 +13,8 @@ getIP
 This program was made by M. Hirsch and curls a public website to get the user's outward-facing IP.
 
 checkIP 
-Also by M. Hirsch, it uses sendmail to email an account whenever a device's IP is changed. Put
-this in a crontab with:
+Also originally by M. Hirsch, it uses sendmail to email an account whenever a device's IP is changed. I have modified it to work from a residential IP address where Comcast blocks common email ports. The modifications let it use an existing Gmail account to send the emails. Usage:
+Put this in a crontab with:
 crontab -e
 
 and then at the top add:
@@ -24,4 +24,4 @@ PATH=/sbin:/bin:/usr/sbin:/usr/bin
 and at the bottom add:
 0 * * * * ~/scripts/checkIP
 
-Taken from http://blogs.bu.edu/mhirsch/2013/11/get-email-upon-change-of-ip-address/
+(Taken from http://blogs.bu.edu/mhirsch/2013/11/get-email-upon-change-of-ip-address/)
