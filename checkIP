@@ -1,6 +1,6 @@
 #!/bin/bash
 
-YOUREMAIL="erik.knechtel@gmail.com"
+YOUREMAIL="email@email.com"
 DEVICE="beaglebone"
 
 IPADDRESS=$(getIP)
