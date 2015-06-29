@@ -22,6 +22,8 @@ TOR=0
 echo "-----------------" >> results.txt
 echo "Running a test:" >> results.txt
 
+date >> results.txt
+
 #Display free memory at start of test, for reference:
 cat /proc/meminfo | head -n 2 | tail -n 1 >> results.txt
 
@@ -32,8 +34,6 @@ if ps -e | grep -w tor &>/dev/null;
 	then TOR=1; 
 	echo "FYI Tor is running in background." >> results.txt; 
 fi
-
-date >> results.txt
 
 echo "Creating a 10M file:" >> results.txt
 echo >> results.txt
